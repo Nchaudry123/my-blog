@@ -1,0 +1,261 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Notebook Blog</title>
+    <style>
+        :root {
+            --paper-color: #fffaf0;
+            --ink-color: #333;
+            --accent-color: #8b4513;
+            --shadow-color: rgba(0, 0, 0, 0.2);
+            --ruled-line: #d2b48c;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', monospace;
+            background-color: #f5f5f5;
+            color: var(--ink-color);
+            height: 100%;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+            margin: 0;
+        }
+
+        nav {
+            margin-top: 15px;
+        }
+
+        nav a {
+            color: var(--paper-color);
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 5px 10px;
+            border: 1px solid transparent;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            border-bottom: 1px solid var(--paper-color);
+        }
+
+        main {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .notebook {
+            width: 90%;
+            max-width: 900px;
+            background-color: var(--paper-color);
+            border-radius: 5px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            padding: 20px;
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .notebook::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50px;
+            width: 1px;
+            background-color: var(--accent-color);
+        }
+
+        .blog-post {
+            background-image: 
+                linear-gradient(to bottom, transparent 0px, transparent 23px, var(--ruled-line) 24px),
+                linear-gradient(to right, var(--ruled-line) 25px, transparent 25px, transparent 100%);
+            background-size: 100% 24px;
+            line-height: 24px;
+            padding: 20px 20px 20px 60px;
+            min-height: 500px;
+            position: relative;
+            display: none;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+        }
+        .blog-post.active {
+            display: block;
+        }
+        @keyframes pageEnter {
+            from { 
+                opacity: 0;
+                transform: rotateY(-30deg);
+                transform-origin: left center;
+            }
+            to { 
+                opacity: 1;
+                transform: rotateY(0deg);
+            }
+        }
+        @keyframes pageExit {
+            from { 
+                opacity: 1;
+                transform: rotateY(0deg);
+                transform-origin: right center;
+            }
+            to { 
+                opacity: 0;
+                transform: rotateY(30deg);
+            }
+        }
+        .page-entering {
+            animation-name: pageEnter;
+        }
+        .page-exiting {
+            animation-name: pageExit;
+        }
+        .blog-post h2 {
+            font-family: 'Courier New', monospace;
+            color: var(--accent-color);
+            margin-top: 0;
+            margin-bottom: 24px;
+        }
+        .blog-post p {
+            margin-top: 0;
+            margin-bottom: 24px;
+        }
+        .date {
+            text-align: right;
+            font-style: italic;
+            color: var(--accent-color);
+            margin-bottom: 24px;
+        }
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            max-width: 900px;
+            padding: 10px;
+        }
+        .pagination button {
+            background-color: var(--accent-color);
+            color: var(--paper-color);
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            border-radius: 3px;
+            box-shadow: 0 2px 4px var(--shadow-color);
+            transition: all 0.3s;
+        }
+        .pagination button:hover {
+            background-color: #6d3710;
+        }
+        .pagination button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .page-indicator {
+            color: var(--accent-color);
+            align-self: center;
+        }
+        .paperclip {
+            position: absolute;
+            top: -10px;
+            right: 40px;
+            width: 30px;
+            height: 60px;
+            border: 3px solid #888;
+            border-radius: 50% 50% 0 0;
+            border-bottom: none;
+            transform: rotate(135deg);
+            z-index: 1;
+        }
+        @media (max-width: 768px) {
+            .notebook::after {
+                left: 20px;
+            }
+            .blog-post {
+                padding-left: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+        <main>
+            <div class="notebook">
+                <div class="paperclip"></div>
+                <div class="blog-post active" id="post1">
+                    <div class="date">March 13, 2025</div>
+                    <h2>Welcome to My Space</h2>
+                    <p>Hey, you found your way here—so, welcome.</p>
+                    <p>This is where I drop my thoughts, ideas, and whatever else crosses my mind. No set rules, no filters—just me putting things down as they come.</p>
+                    <p>Life moves fast, and this is my way of slowing it down, breaking it apart, and making sense of it. Whether it’s tech, business, psychology, or just random observations, you’ll find it all here.</p>
+                    <p>Stick around, read a little, and who knows? Maybe you'll find something that clicks.</p>
+                    <p>– Namir</p>
+                </div>
+                <div class="blog-post" id="post2">
+                    <div class="date">March 14, 2025</div>
+                    <h2>The Pursuit of Growth: Balancing Passion, Discipline, and Connection</h2>
+                    <p>I’ve been thinking a lot lately about the things that drive me—why I push myself in certain areas but hold back in others. Maybe it’s the thrill of the chase, the satisfaction of seeing improvement, or just the need to prove to myself that I can. Whatever the reason, I know one thing for sure: growth isn’t a straight path. It’s a cycle of highs and lows, pushing forward and pulling back, figuring out where to put my energy and where to let go.</p>
+                    <h2>The Mindset of Improvement</h2>
+                    <p>I’m the kind of person who enjoys getting better at things—whether it’s coding, business strategy, or even understanding people. There’s something about solving a problem, building something from scratch, or even just refining a skill that keeps me engaged. But I’ve also realized that improvement isn’t just about raw effort; it’s about knowing where to focus.</p>
+                    <p>For example, I’ve been working on getting better at web development and interactive experiences, crafting digital spaces that are more than just functional—they’re engaging. The same way I think about user experience and design, I’ve started thinking about life: what makes interactions meaningful? How do I create something that actually resonates with people?</p>
+                    <h2>The Psychology of Connection</h2>
+                    <p>I’ve always found human behavior interesting—what makes us drawn to certain people, why we hesitate, and what we actually seek in relationships. It’s why I enjoy talking about psychology, mental models, and self-improvement so much. But the truth is, understanding these things in theory is one thing—applying them in my own life is another.</p>
+                    <p>Lately, I’ve been questioning my own approach to relationships. Sometimes, I feel like I’m the one always initiating, always chasing the conversation. Other times, I step back, unsure if I’m overthinking or if I just need to let things happen naturally. Maybe the real lesson is learning when to engage and when to let things breathe.</p>
+                    <h2>Business, Discipline, and Long-Term Thinking</h2>
+                    <p>As a business and computer science student, I see the world through two lenses: creativity and logic. One of the most valuable things I’ve learned is that long-term success isn’t about motivation—it’s about discipline.</p>
+                    <p>Whether it’s running Joe’s Java, studying for midterms, or even fitness, I’ve realized that results don’t come from short bursts of energy. They come from consistent effort, even when things feel slow. It’s something I’ve had to remind myself when studying for my exams, when working on my portfolio, and even when trying to develop better habits.</p>
+                    <p>But discipline doesn’t mean running on empty. I’ve learned the hard way that burnout is real, and neglecting basic things like sleep, nutrition, and rest can make even simple tasks feel impossible. Maybe that’s why I’ve been feeling drained lately.</p>
+                    <h2>Looking Ahead</h2>
+                    <p>So where does that leave me? Right now, I’m focusing on rebalancing—figuring out where to apply my energy and where to pull back.</p>
+                    <p>I want to push myself to build things that matter, to surround myself with people who bring real value to my life, and to make sure that every step I take is actually moving me forward. I don’t have all the answers, but I know that growth isn’t just about what I do—it’s about who I become in the process.</p>
+                </div>
+            <div class="pagination">
+                <button id="prevBtn" disabled>Previous Page</button>
+                <span class="page-indicator">Page <span id="currentPage">1</span> of <span id="totalPages">3</span></span>
+                <button id="nextBtn">Next Page</button>
+            </div>
+        </main>
+    </div>
+    <script>
+        const posts = document.querySelectorAll('.blog-post');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const currentPageEl = document.getElementById('currentPage');
+        const totalPagesEl = document.getElementById('totalPages');       
+        let currentIndex = 0;
+        totalPagesEl.textContent = posts.length;
+        function showPost(index) {
+            posts[currentIndex].classList.add('page-exiting');         
+            setTimeout(() => {
+                posts[currentIndex].classList.remove('active', 'page-exiting');
+                currentIndex = index;       
+                posts[currentIndex].classList.add('active', 'page-entering');  
+                currentPageEl.textContent = currentIndex + 1;
+                prevBtn.disabled = currentIndex === 0;
+                nextBtn.disabled = currentIndex === posts.length - 1;
+                setTimeout(() => {
+                    posts[currentIndex].classList.remove('page-entering');
+                }, 1000); }, 500); }
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                showPost(currentIndex - 1);
+            } });
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < posts.length - 1) {
+                showPost(currentIndex + 1);
+            }  });
+    </script>
+</body>
+</html>
